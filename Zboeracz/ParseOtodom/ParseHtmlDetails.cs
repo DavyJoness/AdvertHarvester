@@ -13,7 +13,7 @@ namespace Zbieracz
         {
             try
             {
-                string s = node.InnerText.Trim();
+                string s = node.SelectNodes(".//text()").ElementAt(0).InnerText.Trim().Replace(":","");
 
                 return s;
             }

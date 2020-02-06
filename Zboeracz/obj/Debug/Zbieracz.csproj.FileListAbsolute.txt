@@ -10,3 +10,15 @@ C:\Users\Admin\source\repos\Zboeracz\Zboeracz\bin\Debug\Dapper.xml
 C:\Users\Admin\source\repos\Zboeracz\Zboeracz\bin\Debug\HtmlAgilityPack.pdb
 C:\Users\Admin\source\repos\Zboeracz\Zboeracz\bin\Debug\HtmlAgilityPack.xml
 C:\Users\Admin\source\repos\Zboeracz\Zboeracz\obj\Debug\Zbieracz.csproj.CopyComplete
+C:\Users\mateusz.kielpinski\Documents\Visual Studio 2017\Projects\AdvertHarvester\Zboeracz\bin\Debug\Zbieracz.exe.config
+C:\Users\mateusz.kielpinski\Documents\Visual Studio 2017\Projects\AdvertHarvester\Zboeracz\bin\Debug\Zbieracz.exe
+C:\Users\mateusz.kielpinski\Documents\Visual Studio 2017\Projects\AdvertHarvester\Zboeracz\bin\Debug\Zbieracz.pdb
+C:\Users\mateusz.kielpinski\Documents\Visual Studio 2017\Projects\AdvertHarvester\Zboeracz\bin\Debug\Dapper.dll
+C:\Users\mateusz.kielpinski\Documents\Visual Studio 2017\Projects\AdvertHarvester\Zboeracz\bin\Debug\HtmlAgilityPack.dll
+C:\Users\mateusz.kielpinski\Documents\Visual Studio 2017\Projects\AdvertHarvester\Zboeracz\bin\Debug\Dapper.xml
+C:\Users\mateusz.kielpinski\Documents\Visual Studio 2017\Projects\AdvertHarvester\Zboeracz\bin\Debug\HtmlAgilityPack.pdb
+C:\Users\mateusz.kielpinski\Documents\Visual Studio 2017\Projects\AdvertHarvester\Zboeracz\bin\Debug\HtmlAgilityPack.xml
+C:\Users\mateusz.kielpinski\Documents\Visual Studio 2017\Projects\AdvertHarvester\Zboeracz\obj\Debug\Zbieracz.csprojAssemblyReference.cache
+C:\Users\mateusz.kielpinski\Documents\Visual Studio 2017\Projects\AdvertHarvester\Zboeracz\obj\Debug\Zbieracz.csproj.CopyComplete
+C:\Users\mateusz.kielpinski\Documents\Visual Studio 2017\Projects\AdvertHarvester\Zboeracz\obj\Debug\Zbieracz.exe
+C:\Users\mateusz.kielpinski\Documents\Visual Studio 2017\Projects\AdvertHarvester\Zboeracz\obj\Debug\Zbieracz.pdb

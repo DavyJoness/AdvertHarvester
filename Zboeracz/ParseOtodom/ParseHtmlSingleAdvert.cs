@@ -48,7 +48,7 @@ namespace Zbieracz
         {
             try
             {
-                string s = node.InnerText.Trim();
+                string s = node.SelectNodes(".//div").ElementAt(1).SelectNodes(".//text()").ElementAt(0).InnerText.Trim();
 
                 return s;
             }

@@ -15,23 +15,23 @@ namespace Zbieracz
             hw.UserAgent = @"Mozilla/5.0 (Windows NT 6.2; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/32.0.1667.0 Safari/537.36";
             HtmlDocument html = hw.Load(url);
 
-            return html.DocumentNode.SelectNodes("//article//section").ElementAt(1).SelectNodes("//div").ElementAt(1).SelectNodes("//div").ElementAt(1);
+            return html.DocumentNode.SelectSingleNode(".//article").SelectNodes("section").ElementAt(1).SelectNodes("div").ElementAt(1).SelectNodes("div").ElementAt(1);
         }
-
+        
         HtmlNode RetrieveHtmlSingleAdvert(string url)
         {
             HtmlWeb hw = new HtmlWeb();
             hw.UserAgent = @"Mozilla/5.0 (Windows NT 6.2; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/32.0.1667.0 Safari/537.36";
             HtmlDocument html = hw.Load(url);
 
-            return html.DocumentNode.SelectSingleNode("//div[contains(@class, 'css-1qft5kt-Pe')]");
+            return html.DocumentNode.SelectSingleNode(".//article").SelectNodes("div").ElementAt(2);
         }
 
         AdvertDescribe ISimpleAdvert.GetSingleAdvertInfo(string url, int advertId)
         {
             HtmlNode content = RetrieveHtmlSingleAdvert(url);
             HtmlNode exposer = RetrieveHtmlExposer(url);
-            HtmlNodeCollection details = content.SelectSingleNode(".//div[contains(@class, 'css-1kgyoyz-Xt')]").SelectNodes(".//li");
+            HtmlNodeCollection details = content.SelectSingleNode(".//section/div").SelectNodes(".//li");
             AdvertDescribe advert;
 
             if (content != null)

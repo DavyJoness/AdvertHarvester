@@ -12,9 +12,9 @@ namespace Zbieracz
         static void Main(string[] args)
         {
             //string url = @"https://www.olx.pl/nieruchomosci/mieszkania/wynajem/poznan/?search%5Bfilter_float_price%3Ato%5D=1400&search%5Bfilter_enum_rooms%5D%5B0%5D=one&search%5Bprivate_business%5D=private&search%5Bdist%5D=2&search%5Bdistrict_id%5D=713";
-            //string url = @"https://www.olx.pl/oferta/kawalerka-na-wildzie-CID3-IDCRSk8.html#48a65522fe";
+            //string url = @"https://www.olx.pl/oferta/bezposrednio-kawalerka-z-2018r-m-postojowe-ul-ptasia-grunwald-CID3-IDDxG8i.html#c2f436f23b";
             //int advertId = 52;
-            string url = @"https://www.otodom.pl/oferta/kawalerka-bezposrednio-w-centrum-na-kraszewskiego-ID2R7UH.html?";
+            string url = @"https://www.otodom.pl/oferta/bezposrednio-kawalerka-32m-po-remoncie-grunwald-ID2VIBD.html?";
             int advertId = 50;
 
             GetSimpleAdvertInfo(advertId, url);
