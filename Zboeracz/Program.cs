@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Zbieracz
@@ -11,18 +12,63 @@ namespace Zbieracz
     {
         static void Main(string[] args)
         {
-            //string url = @"https://www.olx.pl/nieruchomosci/mieszkania/wynajem/poznan/?search%5Bfilter_float_price%3Ato%5D=1400&search%5Bfilter_enum_rooms%5D%5B0%5D=one&search%5Bprivate_business%5D=private&search%5Bdist%5D=2&search%5Bdistrict_id%5D=713";
-            //string url = @"https://www.olx.pl/oferta/bezposrednio-kawalerka-z-2018r-m-postojowe-ul-ptasia-grunwald-CID3-IDDxG8i.html#c2f436f23b";
-            //int advertId = 52;
-            string url = @"https://www.otodom.pl/oferta/bezposrednio-kawalerka-32m-po-remoncie-grunwald-ID2VIBD.html?";
-            int advertId = 50;
+            string type = "";
+            int searchingId = 0;
 
-            GetSimpleAdvertInfo(advertId, url);
+            try
+            {
+                //type = args[0];
+                //searchingId = Convert.ToInt32(args[1]);
+                type = "detal";
+                searchingId = 1;
+            }
+            catch
+            {
+                Console.WriteLine("Złe parametry");
+                type = "";
+            }
 
-            Console.ReadKey();
+            string url = "";
+            int latestAdvId = 0;
+
+            switch (type)
+            {
+                case "lista":
+                    while (true)
+                    {
+                        url = SqlAdvert.GetSearchingUrl(searchingId);
+                        List<Advert> adverts = GetAdverts(url);
+                        Console.WriteLine(AddAdvertsToDatabase(adverts, searchingId));
+                        Thread.Sleep(4 * 60 * 1000);
+                    }
+
+
+                    break;
+
+                case "detal":
+                    while (true)
+                    {
+                        latestAdvId = SqlAdvert.GetLatestAdvertId(searchingId);
+                        if (latestAdvId > 0)
+                        {
+                            url = SqlAdvert.GetAdvertUrlById(latestAdvId);
+                            AdvertDescribe advert = GetSimpleAdvertInfo(latestAdvId, url);
+                            Console.WriteLine(AddAdvertDetailsToDatabase(advert));
+                        }
+
+                        Thread.Sleep(2 * 60 * 1000);
+                    }
+                    break;
+
+                case "":
+
+                    break;
+            }
         }
 
-        static void GetSimpleAdvertInfo(int advertId, string url)
+
+
+        static AdvertDescribe GetSimpleAdvertInfo(int advertId, string url)
         {
             ISimpleAdvert simpleAdvert;
             AdvertDescribe advert;
@@ -38,20 +84,35 @@ namespace Zbieracz
                 simpleAdvert = new SimpleAdvertOlx();
                 advert = simpleAdvert.GetSingleAdvertInfo(url, advertId);
             }
-            
+
             //Console.Write(AddSimpleAdvertInfoToDatabase(adverts));
 
-            Console.WriteLine("Zakończono pobieranie danych");
+            //Console.WriteLine("Zakończono pobieranie danych");
+            return advert;
         }
 
-        public static string AddAdvertsToDatabase(List<Advert> adverts)
+        private static string AddAdvertDetailsToDatabase(AdvertDescribe advert)
+        {
+            string message = "";
+
+            message += SqlAdvert.InsertAdvertDescribe(advert) + Environment.NewLine;
+
+            foreach (Details detail in advert.AdvertDetails)
+            {
+                SqlAdvert.InsertAdvertDetail(detail, advert.AdvertId);
+            }
+
+            return message;
+        }
+
+        public static string AddAdvertsToDatabase(List<Advert> adverts, int searchId)
         {
             string message = "";
             foreach (Advert advert in adverts)
             {
                 if (!SqlAdvert.IsAdvertExists(advert))
                 {
-                    message += SqlAdvert.InsertAdvert(advert) + Environment.NewLine;
+                    message += SqlAdvert.InsertAdvert(advert, searchId) + Environment.NewLine;
                 }
             }
             return message;

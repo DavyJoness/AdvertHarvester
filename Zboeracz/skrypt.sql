@@ -48,8 +48,24 @@ create table dbo.Pictures
 --drop table dbo.Advert
 select iif(exists(select 1 from dbo.Advert where Adw_ForeignId = @Id),1,0) IsAdwExists
 
-insert into dbo.Advert(Adw_ForeignId, Adw_Name, Adw_Category, Adw_Location, Adw_Date, Adw_Price, Adw_Url, Adw_IsPromoted)
-values (@Id, @Name, @Category, @Location, @Date, @Price, @Url, @IsPromoted)
-select 'Poprawnie dodano og³oszenie ' + Adw_ForeignId + ': ' + Adw_Name as Info from dbo.Advert where Adw_Id = SCOPE_IDENTITY()
+insert into dbo.Advert(Adw_ForeignId, Adw_Name, Adw_Category, Adw_Location, Adw_Date, Adw_Price, Adw_Url, Adw_IsPromoted, Adw_SeLId)
+values (@Id, @Name, @Category, @Location, @Date, @Price, @Url, @IsPromoted, @SearchId)
+select top 1 'Poprawnie dodano og³oszenie ' + Adw_ForeignId + ': ' + Adw_Name as Info from dbo.Advert where Adw_Id = SCOPE_IDENTITY()
 
-select * from dbo.Advert order by Adw_Date desc
+select * from dbo.Attributes order by Adw_Date desc
+
+select top 1 adw_id from dbo.Advert
+where not exists(select 1 from dbo.Describe where Des_AdwId = Adw_Id)
+order by Adw_Id
+
+select top 1 Adw_Url from dbo.Advert where adw_id = @Id
+
+insert into dbo.Describe(Des_AdwId, Des_Describe, Des_Exposer, Des_Tel)
+values (@Id, @Describe, @Exposer,@Tel)
+select top 1 'Poprawnie dodano informacje o ogloszeniu ' + Adw_ForeignId + ': ' + Adw_Name as Info 
+from dbo.Describe inner join dbo.Advert on Des_AdwId = Adw_Id where Des_Id = SCOPE_IDENTITY()
+
+insert into dbo.Attributes(Atr_AdwId, Atr_Name, Atr_Value)
+values (@Id, @Name, @Value)
+select top 1 'Poprawnie dodano atrybuty og³oszenia ' + Adw_ForeignId + ': ' + Atr_Name + ': ' + Atr_Value as Info 
+from dbo.Attributes inner join dbo.Advert on Atr_AdwId = Adw_Id where Atr_Id = SCOPE_IDENTITY()

@@ -22,3 +22,15 @@ C:\Users\mateusz.kielpinski\Documents\Visual Studio 2017\Projects\AdvertHarveste
 C:\Users\mateusz.kielpinski\Documents\Visual Studio 2017\Projects\AdvertHarvester\Zboeracz\obj\Debug\Zbieracz.csproj.CopyComplete
 C:\Users\mateusz.kielpinski\Documents\Visual Studio 2017\Projects\AdvertHarvester\Zboeracz\obj\Debug\Zbieracz.exe
 C:\Users\mateusz.kielpinski\Documents\Visual Studio 2017\Projects\AdvertHarvester\Zboeracz\obj\Debug\Zbieracz.pdb
+C:\Users\Master\source\repos\AdvertHarvester\Zboeracz\bin\Debug\Zbieracz.exe.config
+C:\Users\Master\source\repos\AdvertHarvester\Zboeracz\bin\Debug\Zbieracz.exe
+C:\Users\Master\source\repos\AdvertHarvester\Zboeracz\bin\Debug\Zbieracz.pdb
+C:\Users\Master\source\repos\AdvertHarvester\Zboeracz\bin\Debug\Dapper.dll
+C:\Users\Master\source\repos\AdvertHarvester\Zboeracz\bin\Debug\HtmlAgilityPack.dll
+C:\Users\Master\source\repos\AdvertHarvester\Zboeracz\bin\Debug\Dapper.xml
+C:\Users\Master\source\repos\AdvertHarvester\Zboeracz\bin\Debug\HtmlAgilityPack.pdb
+C:\Users\Master\source\repos\AdvertHarvester\Zboeracz\bin\Debug\HtmlAgilityPack.xml
+C:\Users\Master\source\repos\AdvertHarvester\Zboeracz\obj\Debug\Zbieracz.csprojAssemblyReference.cache
+C:\Users\Master\source\repos\AdvertHarvester\Zboeracz\obj\Debug\Zbieracz.csproj.CopyComplete
+C:\Users\Master\source\repos\AdvertHarvester\Zboeracz\obj\Debug\Zbieracz.exe
+C:\Users\Master\source\repos\AdvertHarvester\Zboeracz\obj\Debug\Zbieracz.pdb
