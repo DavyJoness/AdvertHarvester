@@ -34,6 +34,7 @@ namespace Zbieracz
             switch (type)
             {
                 case "lista":
+                    Console.WriteLine("Rozpoczęto pobieranie listy ogłoszeń");
                     while (true)
                     {
                         url = SqlAdvert.GetSearchingUrl(searchingId);
@@ -46,6 +47,7 @@ namespace Zbieracz
                     break;
 
                 case "detal":
+                    Console.WriteLine("Rozpoczęto pobieranie informacji o pojedynczych ogłoszeniach");
                     while (true)
                     {
                         latestAdvId = SqlAdvert.GetLatestAdvertId(searchingId);
@@ -53,7 +55,10 @@ namespace Zbieracz
                         {
                             url = SqlAdvert.GetAdvertUrlById(latestAdvId);
                             AdvertDescribe advert = GetSimpleAdvertInfo(latestAdvId, url);
-                            Console.WriteLine(AddAdvertDetailsToDatabase(advert));
+                            if (advert != null)
+                                Console.WriteLine(AddAdvertDetailsToDatabase(advert));
+                            else
+                                Console.WriteLine(DeleteAdvert(latestAdvId));
                         }
 
                         Thread.Sleep(2 * 60 * 1000);
@@ -66,14 +71,17 @@ namespace Zbieracz
             }
         }
 
-
+        private static string DeleteAdvert(int latestAdvId)
+        {
+            return SqlAdvert.DeleteAdvert(latestAdvId);
+        }
 
         static AdvertDescribe GetSimpleAdvertInfo(int advertId, string url)
         {
             ISimpleAdvert simpleAdvert;
             AdvertDescribe advert;
 
-            Console.WriteLine("Rozpoczęto pobieranie danych");
+            //Console.WriteLine("Rozpoczęto pobieranie danych");
             if (url.Contains("www.otodom.pl"))
             {
                 simpleAdvert = new SimpleAdvertOtodom();

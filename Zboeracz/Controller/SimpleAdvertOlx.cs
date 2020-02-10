@@ -30,28 +30,32 @@ namespace Zbieracz
         AdvertDescribe ISimpleAdvert.GetSingleAdvertInfo(string url, int advertId)
         {
             HtmlNode content = RetrieveHtmlSingleAdvert(url);
-            HtmlNode exposer = RetrieveHtmlExposer(url);
-            HtmlNodeCollection details = content.SelectSingleNode(".//table[contains(@class, 'details fixed marginbott20 margintop5 full')]").SelectNodes(".//table[contains(@class, 'item')]");
-            AdvertDescribe advert;
-
             if (content != null)
             {
-                try
-                {
-                    advert = new AdvertDescribe();
-                    advert.AdvertId = advertId;
-                    advert.AdvertDetails = GetAdvertDetails(details);
-                    advert.Describe = ParseHtmlSingleAdvertOlx.ParseDescribe(content);
-                    advert.AdvertExposer = ParseHtmlSingleAdvertOlx.ParseAdvertExposer(exposer);
-                    advert.Tel = ParseHtmlSingleAdvertOlx.ParseTel(exposer);
+                HtmlNode exposer = RetrieveHtmlExposer(url);
+                HtmlNodeCollection details = content.SelectSingleNode(".//table[contains(@class, 'details fixed marginbott20 margintop5 full')]").SelectNodes(".//table[contains(@class, 'item')]");
+                AdvertDescribe advert;
 
-                    return advert;
-                }
-                catch
+                if (content != null)
                 {
+                    try
+                    {
+                        advert = new AdvertDescribe();
+                        advert.AdvertId = advertId;
+                        advert.AdvertDetails = GetAdvertDetails(details);
+                        advert.Describe = ParseHtmlSingleAdvertOlx.ParseDescribe(content);
+                        advert.AdvertExposer = ParseHtmlSingleAdvertOlx.ParseAdvertExposer(exposer);
+                        advert.Tel = ParseHtmlSingleAdvertOlx.ParseTel(exposer);
 
+                        return advert;
+                    }
+                    catch
+                    {
+
+                    }
                 }
             }
+
             return null;
         }
 

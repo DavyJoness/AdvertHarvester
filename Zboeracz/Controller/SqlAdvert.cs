@@ -61,6 +61,24 @@ order by Adw_Id";
             return sqlConnection.ExecuteScalar<bool>(query, param);
         }
 
+        internal static string DeleteAdvert(int latestAdvId)
+        {
+            string query = @"declare @adw table 
+(
+	id varchar(16),
+	adwUrl varchar(512)
+)
+insert into @adw
+select top 1 Adw_ForeignId, Adw_Url from dbo.Advert where Adw_Id = @Id
+delete from dbo.Advert where Adw_Id = @Id
+select 'Ogłoszenie ' + id + ' zostało usunięte, jego url: ' + adwUrl as [message] from @adw ";
+
+            DynamicParameters param = new DynamicParameters();
+            param.Add("Id", latestAdvId);
+
+            return sqlConnection.ExecuteScalar<string>(query, param);
+        }
+
         internal static string InsertAdvertDescribe(AdvertDescribe advert)
         {
             string query = @"insert into dbo.Describe(Des_AdwId, Des_Describe, Des_Exposer, Des_Tel)
