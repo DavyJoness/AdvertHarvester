@@ -11,11 +11,18 @@ namespace Zbieracz
     {
         HtmlNode RetrieveHtmlExposer(string url)
         {
-            HtmlWeb hw = new HtmlWeb();
-            hw.UserAgent = @"Mozilla/5.0 (Windows NT 6.2; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/32.0.1667.0 Safari/537.36";
-            HtmlDocument html = hw.Load(url);
+            try
+            {
+                HtmlWeb hw = new HtmlWeb();
+                hw.UserAgent = @"Mozilla/5.0 (Windows NT 6.2; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/32.0.1667.0 Safari/537.36";
+                HtmlDocument html = hw.Load(url);
 
-            return html.DocumentNode.SelectSingleNode(".//article").SelectNodes("section").ElementAt(1).SelectNodes("div").ElementAt(1).SelectNodes("div").ElementAt(1);
+                return html.DocumentNode.SelectSingleNode(".//article").SelectNodes("section").ElementAt(1).SelectNodes("div").ElementAt(1).SelectNodes("div").ElementAt(1);
+            }
+            catch
+            {
+                return null;
+            }
         }
         
         HtmlNode RetrieveHtmlSingleAdvert(string url)
@@ -31,27 +38,31 @@ namespace Zbieracz
         {
             HtmlNode content = RetrieveHtmlSingleAdvert(url);
             HtmlNode exposer = RetrieveHtmlExposer(url);
-            HtmlNodeCollection details = content.SelectSingleNode(".//section/div").SelectNodes(".//li");
-            AdvertDescribe advert;
-
-            if (content != null)
+            if (exposer != null)
             {
-                try
-                {
-                    advert = new AdvertDescribe();
-                    advert.AdvertId = advertId;
-                    advert.AdvertDetails = GetAdvertDetails(details);
-                    advert.Describe = ParseHtmlSingleAdvertOtodom.ParseDescribe(content);
-                    advert.AdvertExposer = ParseHtmlSingleAdvertOtodom.ParseAdvertExposer(exposer);
-                    //advert.Tel = ParseHtmlSingleAdvertOtodom.ParseTel(exposer);
+                HtmlNodeCollection details = content.SelectSingleNode(".//section/div").SelectNodes(".//li");
+                AdvertDescribe advert;
 
-                    return advert;
-                }
-                catch
+                if (content != null)
                 {
+                    try
+                    {
+                        advert = new AdvertDescribe();
+                        advert.AdvertId = advertId;
+                        advert.AdvertDetails = GetAdvertDetails(details);
+                        advert.Describe = ParseHtmlSingleAdvertOtodom.ParseDescribe(content);
+                        advert.AdvertExposer = ParseHtmlSingleAdvertOtodom.ParseAdvertExposer(exposer);
+                        //advert.Tel = ParseHtmlSingleAdvertOtodom.ParseTel(exposer);
 
+                        return advert;
+                    }
+                    catch
+                    {
+
+                    }
                 }
             }
+
             return null;
         }
 

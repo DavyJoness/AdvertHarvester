@@ -142,7 +142,7 @@ namespace Zbieracz
 
                 return Convert.ToDecimal(s);
             }
-            catch(Exception ex)
+            catch
             {
                 return 0;
             }

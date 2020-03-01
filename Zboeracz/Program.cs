@@ -2,12 +2,19 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+using Logger;
 
 namespace Zbieracz
 {
+    class Writer
+    {
+        public static void Write(string line)
+        {
+            Console.WriteLine(line);
+            Log.WriteLog(line);
+        }
+
+    }
     class Program
     {
         static void Main(string[] args)
@@ -17,63 +24,61 @@ namespace Zbieracz
 
             try
             {
-                //type = args[0];
-                //searchingId = Convert.ToInt32(args[1]);
+#if (!DEBUG)
+                type = args[0];
+                searchingId = Convert.ToInt32(args[1]);
+#else
                 type = "detal";
                 searchingId = 1;
+#endif
             }
             catch
             {
-                Console.WriteLine("Złe parametry");
+                Writer.Write("Złe parametry");
                 type = "";
             }
 
-            string url = "";
+            string url;
             int latestAdvId = 0;
 
             switch (type)
             {
                 case "lista":
-                    Console.WriteLine("Rozpoczęto pobieranie listy ogłoszeń");
-                    while (true)
-                    {
-                        url = SqlAdvert.GetSearchingUrl(searchingId);
-                        List<Advert> adverts = GetAdverts(url);
-                        Console.WriteLine(AddAdvertsToDatabase(adverts, searchingId));
-                        Thread.Sleep(4 * 60 * 1000);
-                    }
+                    Writer.Write("Rozpoczęto pobieranie listy ogłoszeń");
 
+                    url = SqlAdvert.GetSearchingUrl(searchingId);
+                    List<Advert> adverts = GetAdverts(url);
+                    AddAdvertsToDatabase(adverts, searchingId);
 
+                    Writer.Write("Zakończono pobieranie listy ogłoszeń");
                     break;
 
                 case "detal":
-                    Console.WriteLine("Rozpoczęto pobieranie informacji o pojedynczych ogłoszeniach");
-                    while (true)
+                    Writer.Write("Rozpoczęto pobieranie informacji o pojedynczych ogłoszeniach");
+
+                    latestAdvId = SqlAdvert.GetLatestAdvertId(searchingId);
+                    if (latestAdvId > 0)
                     {
-                        latestAdvId = SqlAdvert.GetLatestAdvertId(searchingId);
-                        if (latestAdvId > 0)
-                        {
-                            url = SqlAdvert.GetAdvertUrlById(latestAdvId);
-                            AdvertDescribe advert = GetSimpleAdvertInfo(latestAdvId, url);
-                            if (advert != null)
-                                Console.WriteLine(AddAdvertDetailsToDatabase(advert));
-                            else
-                                Console.WriteLine(DeleteAdvert(latestAdvId));
-                        }
-
-                        Thread.Sleep(2 * 60 * 1000);
+                        url = SqlAdvert.GetAdvertUrlById(latestAdvId);
+                        AdvertDescribe advert = GetSimpleAdvertInfo(latestAdvId, url);
+                        if (advert != null)
+                            AddAdvertDetailsToDatabase(advert);
+                        else
+                            DeleteAdvert(latestAdvId);
                     }
-                    break;
-
-                case "":
+                    else
+                    {
+                        Writer.Write("Zakończono pobieranie inforacji o ogłoszeniu: brak nowych ogłoszeń");
+                    }
+                    Writer.Write("Zakończono pobieranie informacji o pojedynczych ogłoszeniach");
 
                     break;
             }
         }
 
-        private static string DeleteAdvert(int latestAdvId)
+        private static void DeleteAdvert(int latestAdvId)
         {
-            return SqlAdvert.DeleteAdvert(latestAdvId);
+            Log.WriteLog(SqlAdvert.DeleteAdvert(latestAdvId));
         }
 
         static AdvertDescribe GetSimpleAdvertInfo(int advertId, string url)
@@ -81,7 +86,6 @@ namespace Zbieracz
             ISimpleAdvert simpleAdvert;
             AdvertDescribe advert;
 
-            //Console.WriteLine("Rozpoczęto pobieranie danych");
             if (url.Contains("www.otodom.pl"))
             {
                 simpleAdvert = new SimpleAdvertOtodom();
@@ -93,37 +97,29 @@ namespace Zbieracz
                 advert = simpleAdvert.GetSingleAdvertInfo(url, advertId);
             }
 
-            //Console.Write(AddSimpleAdvertInfoToDatabase(adverts));
-
-            //Console.WriteLine("Zakończono pobieranie danych");
             return advert;
         }
 
-        private static string AddAdvertDetailsToDatabase(AdvertDescribe advert)
+        private static void AddAdvertDetailsToDatabase(AdvertDescribe advert)
         {
-            string message = "";
-
-            message += SqlAdvert.InsertAdvertDescribe(advert) + Environment.NewLine;
+            Log.WriteLog(SqlAdvert.InsertAdvertDescribe(advert));
 
             foreach (Details detail in advert.AdvertDetails)
             {
                 SqlAdvert.InsertAdvertDetail(detail, advert.AdvertId);
             }
 
-            return message;
         }
 
-        public static string AddAdvertsToDatabase(List<Advert> adverts, int searchId)
+        public static void AddAdvertsToDatabase(List<Advert> adverts, int searchId)
         {
-            string message = "";
             foreach (Advert advert in adverts)
             {
                 if (!SqlAdvert.IsAdvertExists(advert))
                 {
-                    message += SqlAdvert.InsertAdvert(advert, searchId) + Environment.NewLine;
+                    Log.WriteLog(SqlAdvert.InsertAdvert(advert, searchId));
                 }
             }
-            return message;
         }
 
         public static List<Advert> GetAdverts(string url)
@@ -169,6 +165,8 @@ namespace Zbieracz
 
             return html.GetElementbyId("offers_table").SelectNodes("//table[@summary='Ogłoszenie']");
         }
+
+        
 
     }
 }

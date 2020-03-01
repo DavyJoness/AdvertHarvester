@@ -1,0 +1,5 @@
+C:\Users\Master\source\repos\Zbieracz CLR\Zbieracz CLR\obj\Debug\Zbieracz CLR.csprojAssemblyReference.cache
+C:\Users\Master\source\repos\Zbieracz CLR\Zbieracz CLR\bin\Debug\Zbieracz CLR.dll
+C:\Users\Master\source\repos\Zbieracz CLR\Zbieracz CLR\bin\Debug\Zbieracz CLR.pdb
+C:\Users\Master\source\repos\Zbieracz CLR\Zbieracz CLR\obj\Debug\Zbieracz CLR.dll
+C:\Users\Master\source\repos\Zbieracz CLR\Zbieracz CLR\obj\Debug\Zbieracz CLR.pdb

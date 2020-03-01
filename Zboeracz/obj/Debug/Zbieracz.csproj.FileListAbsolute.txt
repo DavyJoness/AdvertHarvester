@@ -34,3 +34,5 @@ C:\Users\Master\source\repos\AdvertHarvester\Zboeracz\obj\Debug\Zbieracz.csprojA
 C:\Users\Master\source\repos\AdvertHarvester\Zboeracz\obj\Debug\Zbieracz.csproj.CopyComplete
 C:\Users\Master\source\repos\AdvertHarvester\Zboeracz\obj\Debug\Zbieracz.exe
 C:\Users\Master\source\repos\AdvertHarvester\Zboeracz\obj\Debug\Zbieracz.pdb
+C:\Users\Master\source\repos\AdvertHarvester\Zboeracz\bin\Debug\NLog.dll
+C:\Users\Master\source\repos\AdvertHarvester\Zboeracz\bin\Debug\NLog.xml

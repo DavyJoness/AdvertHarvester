@@ -1,0 +1,10 @@
+C:\Users\Master\source\repos\Zbieracz CLR\Zbieracz CLR\bin\Release\Zbieracz CLR.dll
+C:\Users\Master\source\repos\Zbieracz CLR\Zbieracz CLR\bin\Release\Zbieracz CLR.pdb
+C:\Users\Master\source\repos\Zbieracz CLR\Zbieracz CLR\obj\Release\Zbieracz CLR.csprojAssemblyReference.cache
+C:\Users\Master\source\repos\Zbieracz CLR\Zbieracz CLR\obj\Release\Zbieracz CLR.dll
+C:\Users\Master\source\repos\Zbieracz CLR\Zbieracz CLR\obj\Release\Zbieracz CLR.pdb
+C:\Users\Master\source\repos\Zbieracz\Zbieracz CLR\bin\Release\Zbieracz CLR.dll
+C:\Users\Master\source\repos\Zbieracz\Zbieracz CLR\bin\Release\Zbieracz CLR.pdb
+C:\Users\Master\source\repos\Zbieracz\Zbieracz CLR\obj\Release\Zbieracz CLR.csprojAssemblyReference.cache
+C:\Users\Master\source\repos\Zbieracz\Zbieracz CLR\obj\Release\Zbieracz CLR.dll
+C:\Users\Master\source\repos\Zbieracz\Zbieracz CLR\obj\Release\Zbieracz CLR.pdb
