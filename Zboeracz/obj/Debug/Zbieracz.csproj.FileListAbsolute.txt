@@ -36,3 +36,17 @@ C:\Users\Master\source\repos\AdvertHarvester\Zboeracz\obj\Debug\Zbieracz.exe
 C:\Users\Master\source\repos\AdvertHarvester\Zboeracz\obj\Debug\Zbieracz.pdb
 C:\Users\Master\source\repos\AdvertHarvester\Zboeracz\bin\Debug\NLog.dll
 C:\Users\Master\source\repos\AdvertHarvester\Zboeracz\bin\Debug\NLog.xml
+C:\Users\Master\source\repos\Zbieracz\Zboeracz\bin\Debug\Zbieracz.exe.config
+C:\Users\Master\source\repos\Zbieracz\Zboeracz\bin\Debug\Zbieracz.exe
+C:\Users\Master\source\repos\Zbieracz\Zboeracz\bin\Debug\Zbieracz.pdb
+C:\Users\Master\source\repos\Zbieracz\Zboeracz\bin\Debug\Dapper.dll
+C:\Users\Master\source\repos\Zbieracz\Zboeracz\bin\Debug\HtmlAgilityPack.dll
+C:\Users\Master\source\repos\Zbieracz\Zboeracz\bin\Debug\NLog.dll
+C:\Users\Master\source\repos\Zbieracz\Zboeracz\bin\Debug\Dapper.xml
+C:\Users\Master\source\repos\Zbieracz\Zboeracz\bin\Debug\HtmlAgilityPack.pdb
+C:\Users\Master\source\repos\Zbieracz\Zboeracz\bin\Debug\HtmlAgilityPack.xml
+C:\Users\Master\source\repos\Zbieracz\Zboeracz\bin\Debug\NLog.xml
+C:\Users\Master\source\repos\Zbieracz\Zboeracz\obj\Debug\Zbieracz.csprojAssemblyReference.cache
+C:\Users\Master\source\repos\Zbieracz\Zboeracz\obj\Debug\Zbieracz.csproj.CopyComplete
+C:\Users\Master\source\repos\Zbieracz\Zboeracz\obj\Debug\Zbieracz.exe
+C:\Users\Master\source\repos\Zbieracz\Zboeracz\obj\Debug\Zbieracz.pdb

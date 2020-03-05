@@ -89,7 +89,7 @@ from dbo.Describe inner join dbo.Advert on Des_AdwId = Adw_Id where Des_Id = SCO
             DynamicParameters param = new DynamicParameters();
             param.Add("Id", advert.AdvertId);
             param.Add("Describe", advert.Describe);
-            param.Add("Exposer", advert.AdvertExposer);
+            param.Add("Exposer", advert.AdvertExposer.Length <= 31 ? advert.AdvertExposer : advert.AdvertExposer.Substring(0, 31));
             param.Add("Tel", null);
 
             return sqlConnection.ExecuteScalar<string>(query, param);

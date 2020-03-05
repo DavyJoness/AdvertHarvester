@@ -29,7 +29,7 @@ namespace Zbieracz
                 searchingId = Convert.ToInt32(args[1]);
 #else
                 type = "detal";
-                searchingId = 1;
+                searchingId = 5;
 #endif
             }
             catch
@@ -44,19 +44,22 @@ namespace Zbieracz
             switch (type)
             {
                 case "lista":
-                    Writer.Write("Rozpoczęto pobieranie listy ogłoszeń");
+                    //Writer.Write("Rozpoczęto pobieranie listy ogłoszeń");
 
                     url = SqlAdvert.GetSearchingUrl(searchingId);
                     List<Advert> adverts = GetAdverts(url);
                     AddAdvertsToDatabase(adverts, searchingId);
 
-                    Writer.Write("Zakończono pobieranie listy ogłoszeń");
+                    //Writer.Write("Zakończono pobieranie listy ogłoszeń");
                     break;
 
                 case "detal":
-                    Writer.Write("Rozpoczęto pobieranie informacji o pojedynczych ogłoszeniach");
+                    //Writer.Write("Rozpoczęto pobieranie informacji o pojedynczych ogłoszeniach");
 
                     latestAdvId = SqlAdvert.GetLatestAdvertId(searchingId);
+#if (DEBUG)
+                    latestAdvId = 1106;
+#endif
                     if (latestAdvId > 0)
                     {
                         url = SqlAdvert.GetAdvertUrlById(latestAdvId);
@@ -68,9 +71,9 @@ namespace Zbieracz
                     }
                     else
                     {
-                        Writer.Write("Zakończono pobieranie inforacji o ogłoszeniu: brak nowych ogłoszeń");
+                        //Writer.Write("Zakończono pobieranie inforacji o ogłoszeniu: brak nowych ogłoszeń");
                     }
-                    Writer.Write("Zakończono pobieranie informacji o pojedynczych ogłoszeniach");
+                    //Writer.Write("Zakończono pobieranie informacji o pojedynczych ogłoszeniach");
 
                     break;
             }
