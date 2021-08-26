@@ -3,7 +3,8 @@ create table dbo.SearchLink
 	Sel_Id int identity(1,1) primary key,
 	Sel_Url varchar(768) not null unique,
 	Sel_Name varchar(512),
-	Sel_Describe varchar(2048)
+	Sel_Describe varchar(2048),
+	Sel_IsEnabled bit not null default(0)
 );
 
 create table dbo.Advert

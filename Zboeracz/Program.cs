@@ -28,8 +28,8 @@ namespace Zbieracz
                 type = args[0];
                 searchingId = Convert.ToInt32(args[1]);
 #else
-                type = "detal";
-                searchingId = 5;
+                type = "lista";
+                searchingId = 6;
 #endif
             }
             catch
@@ -165,6 +165,10 @@ namespace Zbieracz
             HtmlWeb hw = new HtmlWeb();
             hw.UserAgent = @"Mozilla/5.0 (Windows NT 6.2; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/32.0.1667.0 Safari/537.36";
             HtmlDocument html = hw.Load(url);
+
+#if DEBUG
+            Log.WriteLog(html.ParsedText);
+#endif
 
             return html.GetElementbyId("offers_table").SelectNodes("//table[@summary='Ogłoszenie']");
         }
